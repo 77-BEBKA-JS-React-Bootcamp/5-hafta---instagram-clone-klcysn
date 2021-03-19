@@ -5,13 +5,15 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Home from "./pages/Home"
+import Detail from "./pages/Detail"
 
 function App() {
   return (
     <Router>
       <Switch>
-          <Route path="/users" />
-          <Route path="/" exact/>
+          <Route path="/detail" component={Detail} />
+          <Route path="/" component={Home} exact/>
         </Switch>
     </Router>
   );
