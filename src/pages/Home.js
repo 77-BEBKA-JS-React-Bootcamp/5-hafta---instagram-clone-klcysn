@@ -15,6 +15,9 @@ const Home = () => {
     axios.get("https://jsonplaceholder.typicode.com/photos")
     .then((response)=>setGallery(response.data.slice(0, 48)))
   },[])
+  const routeDetail = (item, index)=>{
+    history.push({pathname: "/detail", state:{item, photoDetails:`https://picsum.photos/200/300?random=${index}`}})
+  }
   return (
     <div>
       <Navigation />
@@ -24,7 +27,7 @@ const Home = () => {
         <ul class="stories">
           {items?.map((item, index)=>{
             return(
-            <li class="story-item" onClick={()=>history.push({pathname: "/detail", state:{item, photoDetails:`https://picsum.photos/200/300?random=${index}`}})}>
+            <li class="story-item" onClick={()=>routeDetail(item, index)}>
               <div class="image">{<img src={`https://picsum.photos/200/300?random=${index}`} alt="story-item" />}</div>
               <div class="title">{item.title.slice(0, 5)}...</div>
             </li>
@@ -138,7 +141,7 @@ const Home = () => {
         <div class="gallery">
           {gallery.map((item, index)=>{
             return(
-            <div class="gallery-item">
+            <div class="gallery-item" onClick={()=>routeDetail(item, index)}>
               <img src={`https://picsum.photos/200/300?random=${index}`} alt="gallery-item" />
               <span class="media-icon"></span>
             </div>
